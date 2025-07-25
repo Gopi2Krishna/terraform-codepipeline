@@ -77,7 +77,7 @@ module "alb" {
       ## we can only associate a ASG or single ec2 using this tg, 
       ###to overcome this we use aws_lb_target_group_attachment resource from aws.
       create_attachment                 = false
-      name_prefix                       = "tg1-"
+      name_prefix                       = "${local.name}-tg1-"
       protocol                          = "HTTP"
       port                              = 80
       target_type                       = "instance"
@@ -97,33 +97,7 @@ module "alb" {
       }
       tags = local.tags
     } # end of tg1
-
-    tg2 = {
-      #This will stop alb from attaching the ec2 instances to tg
-      ## we can only associate a ASG or single ec2 using this tg, 
-      ###to overcome this we use aws_lb_target_group_attachment resource from aws.
-      create_attachment                 = false
-      name_prefix                       = "tg2-"
-      protocol                          = "HTTP"
-      port                              = 8080
-      target_type                       = "instance"
-      deregistration_delay              = 10
-      load_balancing_cross_zone_enabled = false
-      protocol_version                  = "HTTP1"
-      health_check = {
-        enabled             = true
-        interval            = 30
-        path                = "/login"
-        port                = "traffic-port"
-        healthy_threshold   = 3
-        unhealthy_threshold = 3
-        timeout             = 6
-        protocol            = "HTTP"
-        matcher             = "200-399"
-      }
-      tags = local.tags #tg tags
-    }                   #end of tg2
-  }                     # end of tgs
+  }   # end of tgs
 }
 
 resource "aws_lb_target_group_attachment" "tg1" {
@@ -133,9 +107,3 @@ resource "aws_lb_target_group_attachment" "tg1" {
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "tg2" {
-  for_each         = { for instance, instance_details in module.ec2-db : instance => instance_details }
-  target_id        = each.value.id
-  target_group_arn = module.alb.target_groups["tg2"].arn
-  port             = 8080
-}

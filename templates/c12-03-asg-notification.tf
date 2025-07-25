@@ -1,6 +1,6 @@
 #SNS topic
 resource "aws_sns_topic" "asg-sns-topic" {
-  name = "asg-sns-topic-${random_pet.this.id}"
+  name = "${local.name}-asg-sns-topic"
 }
 
 #SNS subscription

@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_group" "cis-alarm-logs" {
-  name = "cis-log-group-${random_pet.this.id}"
+  name = "${local.name}-cis-log-group"
 }
 
 module "cloudwatch_cis-alarms" {

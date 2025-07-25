@@ -1,6 +1,6 @@
 #target tracking policy
 resource "aws_autoscaling_policy" "asg-cpu-avg-tracker" {
-  name                      = "asg-cpu-avg-tracker"
+  name                      = "${local.name}-asg-cpu-avg-tracker"
   policy_type               = "TargetTrackingScaling"
   autoscaling_group_name    = aws_autoscaling_group.asg-1.id
   estimated_instance_warmup = 180 # defaults to ASG default cooldown 300 seconds if not set
@@ -16,7 +16,7 @@ resource "aws_autoscaling_policy" "asg-cpu-avg-tracker" {
 
 # TTS - Scaling Policy-2: Based on ALB Target Requests
 resource "aws_autoscaling_policy" "alb-requests-tracker" {
-  name                      = "alb-requests-tracker"
+  name                      = "${local.name}-alb-requests-tracker"
   policy_type               = "TargetTrackingScaling"
   autoscaling_group_name    = aws_autoscaling_group.asg-1.id
   estimated_instance_warmup = 120 # defaults to ASG default cooldown 300 seconds if not set  

@@ -11,7 +11,6 @@ module "vpc" {
   public_subnets                     = [for k, v in var.azs : cidrsubnet(var.vpc_cidr, 8, k)]
   private_subnets                    = [for k, v in var.azs : cidrsubnet(var.vpc_cidr, 8, k + 2)]
   database_subnets                   = [for k, v in var.azs : cidrsubnet(var.vpc_cidr, 8, k + 4)]
-  create_database_subnet_group       = var.vpc_create_database_subnet_group
   create_database_subnet_route_table = var.vpc_create_database_subnet_route_table
 
   enable_dns_hostnames = true

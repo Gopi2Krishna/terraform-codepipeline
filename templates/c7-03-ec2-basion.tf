@@ -9,6 +9,6 @@ module "ec2-bastion" {
 
   subnet_id              = module.vpc.public_subnets[0]
   vpc_security_group_ids = [module.bastion-sg.security_group_id]
-  user_data              = file("${path.module}/jumpbox-install.sh")
+  user_data              = file("${path.module}/app1-install.sh")
   tags                   = local.tags
 }

@@ -11,10 +11,6 @@ variable "vpc_cidr" {
 variable "azs" {
 }
 
-variable "vpc_create_database_subnet_group" {
-  default = true
-}
-
 variable "vpc_create_database_subnet_route_table" {
   default = true
 }

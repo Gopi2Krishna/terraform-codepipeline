@@ -1,13 +1,13 @@
 resource "aws_autoscaling_policy" "high-cpu-simple-scaling" {
   autoscaling_group_name = aws_autoscaling_group.asg-1.name
-  name                   = "cw-asg-scaling"
+  name                   = "${local.name}-cw-asg-scaling"
   scaling_adjustment     = 4
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
 }
 
 resource "aws_cloudwatch_metric_alarm" "asg-cpu-alarm" {
-  alarm_name          = "asg-cpu-alarm"
+  alarm_name          = "${local.name}-asg-cpu-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"

@@ -23,7 +23,7 @@ resource "aws_launch_template" "lt-1" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      name = "asg-${random_pet.this.id}"
+      name = "${local.name}-${random_pet.this.id}"
 
     }
   }

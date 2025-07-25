@@ -2,7 +2,7 @@ module "loadbalancer_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "5.3.0"
   vpc_id  = module.vpc.vpc_id
-  name    = "loadbalancer-sg"
+  name    = "${local.name}-loadbalancer-sg"
 
   ingress_rules       = ["http-80-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]

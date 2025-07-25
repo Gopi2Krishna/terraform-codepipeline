@@ -1,7 +1,7 @@
 # Define CloudWatch Alarms for ALB
 # Alert if HTTP 4xx errors are more than threshold value
 resource "aws_cloudwatch_metric_alarm" "alb_4xx_errors" {
-  alarm_name          = "App1-ALB-HTTP-4xx-errors"
+  alarm_name          = "${local.name}-App1-ALB-HTTP-4xx-errors"
   comparison_operator = "GreaterThanThreshold"
   datapoints_to_alarm = "2"
   evaluation_periods  = "3"
