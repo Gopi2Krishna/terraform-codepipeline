@@ -1,5 +1,4 @@
 #Local variables for internal use.
-
 locals {
   Owner       = var.department
   environment = var.environment

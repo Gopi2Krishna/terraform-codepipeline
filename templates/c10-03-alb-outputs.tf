@@ -1,3 +1,6 @@
+# Outputs for ALB resources including ID, ARN, listeners, and DNS name
+# Sensitive outputs are marked for security
+
 # Terraform AWS Application Load Balancer (ALB) Outputs
 output "alb_id" {
   description = "The ID and ARN of the load balancer we created"

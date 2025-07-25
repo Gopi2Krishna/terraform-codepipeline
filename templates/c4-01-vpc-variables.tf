@@ -1,24 +1,26 @@
 #Defining VPC variables.
 
 variable "vpc_name" {
-  default = "vpc"
+  default     = "vpc"
+  description = "Name of the VPC"
 }
 
 variable "vpc_cidr" {
-  default = "10.0.0.0/16"
+  default     = "10.0.0.0/16"
+  description = "value of CIDR for VPC"
 }
 
 variable "azs" {
-}
-
-variable "vpc_create_database_subnet_route_table" {
-  default = true
+  description = "value of availability zones to deploy resources"
+  type        = [string]
 }
 
 variable "vpc_enable_nat_gateway" {
-  default = true
+  default     = true
+  description = "value to enable NAT Gateway"
 }
 
 variable "vpc_single_nat_gateway" {
-  default = true
+  default     = true
+  description = "value to create single NAT Gateway"
 }

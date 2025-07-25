@@ -1,5 +1,5 @@
 resource "aws_launch_template" "lt-1" {
-  name                   = "base-lt-1"
+  name_prefix            = "${local.name}-lt-"
   description            = "basic launch template"
   vpc_security_group_ids = [module.private-sg.security_group_id]
   image_id               = data.aws_ami.amznlnx.id
@@ -23,7 +23,7 @@ resource "aws_launch_template" "lt-1" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      name = "${local.name}-${random_pet.this.id}"
+      Name = "${local.name}-${random_pet.this.id}"
 
     }
   }

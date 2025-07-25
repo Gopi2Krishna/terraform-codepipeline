@@ -1,12 +1,15 @@
 
 #Generic variables used in the project
 variable "aws_region" {
-  default = "us-east-1"
+  description = "AWS region to deploy resources"
+  default     = "us-east-1"
 }
 
 variable "environment" {
+  description = "value of environment to deploy resources"
 }
 
 variable "department" {
-  default = "tech"
+  description = "Department for tagging resources"
+  default     = "tech"
 }

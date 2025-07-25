@@ -1,3 +1,7 @@
+# Configures an Auto Scaling Group (ASG) with desired capacity and subnets
+# Associates the ASG with target groups and health checks
+# Includes instance refresh settings and tags for resource identification
+
 # Autoscaling Group Resource
 resource "aws_autoscaling_group" "asg-1" {
   name_prefix         = "${local.name}-asg-"

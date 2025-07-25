@@ -1,3 +1,7 @@
+# Configures the ALB module with VPC, subnets, and security groups
+# Defines listeners and rules for HTTP traffic
+# Includes fixed responses and path-based routing rules
+
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "9.17.0"
