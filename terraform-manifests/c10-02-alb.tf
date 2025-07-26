@@ -48,29 +48,6 @@ module "alb" {
             }
           }]
         } # End of myapp1-rule
-
-        # Rule-2: app2-rule
-        app2-rule = {
-          priority = 30
-          actions = [{
-            type = "weighted-forward"
-            target_groups = [
-              {
-                target_group_key = "tg2"
-                weight           = 1
-              }
-            ]
-            stickiness = {
-              enabled  = true
-              duration = 3600
-            }
-          }]
-          conditions = [{
-            path_pattern = {
-              values = ["/*"]
-            }
-          }]
-        } # End of myapp3-rule Block
       }   #end of rules
     }     #end of http listner
   }       #end of listners
@@ -81,7 +58,7 @@ module "alb" {
       ## we can only associate a ASG or single ec2 using this tg, 
       ###to overcome this we use aws_lb_target_group_attachment resource from aws.
       create_attachment                 = false
-      name_prefix                       = "${local.name}-tg1-"
+      name                              = "${local.name}-tg1"
       protocol                          = "HTTP"
       port                              = 80
       target_type                       = "instance"
@@ -103,11 +80,3 @@ module "alb" {
     } # end of tg1
   }   # end of tgs
 }
-
-resource "aws_lb_target_group_attachment" "tg1" {
-  for_each         = { for instance, instance_details in module.ec2-private : instance => instance_details }
-  target_id        = each.value.id
-  target_group_arn = module.alb.target_groups["tg1"].arn
-  port             = 80
-}
-

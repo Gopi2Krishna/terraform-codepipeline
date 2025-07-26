@@ -12,7 +12,6 @@ variable "vpc_cidr" {
 
 variable "azs" {
   description = "value of availability zones to deploy resources"
-  type        = [string]
 }
 
 variable "vpc_enable_nat_gateway" {

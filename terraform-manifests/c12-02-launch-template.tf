@@ -1,5 +1,5 @@
 resource "aws_launch_template" "lt-1" {
-  name_prefix            = "${local.name}-lt-"
+  name                   = "${local.name}-lt"
   description            = "basic launch template"
   vpc_security_group_ids = [module.private-sg.security_group_id]
   image_id               = data.aws_ami.amznlnx.id
