@@ -1,4 +1,5 @@
 resource "aws_autoscaling_policy" "high-cpu-simple-scaling" {
+  depends_on             = [aws_autoscaling_group.asg-1]
   autoscaling_group_name = aws_autoscaling_group.asg-1.name
   name                   = "${local.name}-cw-asg-scaling"
   scaling_adjustment     = 4
@@ -7,6 +8,7 @@ resource "aws_autoscaling_policy" "high-cpu-simple-scaling" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "asg-cpu-alarm" {
+  depends_on          = [aws_autoscaling_policy.high-cpu-simple-scaling]
   alarm_name          = "${local.name}-asg-cpu-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
